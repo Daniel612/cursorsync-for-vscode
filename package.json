@@ -1,11 +1,15 @@
 {
   "name": "cursorsync-for-vscode",
   "displayName": "CursorSync for VSCode",
-  "description": "Open current line in Xcode",
-  "version": "0.0.1",
+  "description": "Open current file in Xcode",
+  "version": "1.0.0",
   "icon": "images/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Daniel612/cursorsync-for-vscode.git"
+  },
   "engines": {
-    "vscode": "^1.100.0"
+    "vscode": "^1.98.0"
   },
   "categories": [
     "Other"
@@ -33,7 +37,7 @@
         "cursorsync.openWithApp": {
           "type": "string",
           "default": "Xcode",
-          "description": "The name of the application to open the file with (e.g., Xcode, Xcode beta)."
+          "description": "The name or path of the application to open the file with (e.g., Xcode, /Applications/Xcode.app)."
         }
       }
     }
@@ -47,7 +51,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.100.0",
+    "@types/vscode": "^1.98.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
     "@typescript-eslint/eslint-plugin": "^8.31.1",
