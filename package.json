@@ -4,6 +4,7 @@
   "description": "Open current file in Xcode",
   "version": "1.0.0",
   "icon": "images/icon.png",
+  "publisher": "daniel612-zhang",
   "repository": {
     "type": "git",
     "url": "git@github.com:Daniel612/cursorsync-for-vscode.git"
