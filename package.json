@@ -2,7 +2,7 @@
   "name": "cursorsync-for-vscode",
   "displayName": "CursorSync",
   "description": "Open current file in Xcode",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "icon": "images/icon.png",
   "publisher": "daniel612-zhang",
   "repository": {
