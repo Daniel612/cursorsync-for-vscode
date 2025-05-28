@@ -4,6 +4,16 @@ All notable changes to the "cursorsync-for-vscode" extension will be documented 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+
+## [1.1.0] - 2025-05-28
+
+### Added
+- Support for selecting characters.
+- Added a setting item to switch selection modes.
+
+### Fixed
+- Save the file before jumping.
+
 ## [1.0.1] - 2025-05-27
 
 ### Fixed

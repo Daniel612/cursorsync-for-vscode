@@ -2,7 +2,7 @@
   "name": "cursorsync-for-vscode",
   "displayName": "CursorSync for VSCode",
   "description": "Open current file in Xcode",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "icon": "images/icon.png",
   "publisher": "daniel612-zhang",
   "repository": {
@@ -39,6 +39,15 @@
           "type": "string",
           "default": "Xcode",
           "description": "The name or path of the application to open the file with (e.g., Xcode, /Applications/Xcode.app)."
+        },
+        "cursorsync.selectionMode": {
+          "type": "string",
+          "default": "character",
+          "enum": [
+            "line",
+            "character"
+          ],
+          "description": "Determines how to select content in the target application: by line number or by character range."
         }
       }
     }

@@ -24,6 +24,8 @@ export function activate(context: vscode.ExtensionContext) {
 			return;
 		}
 
+        await vscode.window.activeTextEditor?.document.save();
+
         // 1. Get the file path of the currently active editor
         const activeEditor = vscode.window.activeTextEditor;
         if (!activeEditor) {
@@ -32,8 +34,12 @@ export function activate(context: vscode.ExtensionContext) {
         }
         const currentFilePath = activeEditor.document.uri.fsPath;
 
-        // 2. Get the current cursor line number (1-based)
-        const currentLineNumber = activeEditor.selection.active.line + 1;
+        // 2. Get the current selection's start and end character offsets (0-based)
+        const selection = activeEditor.selection;
+        const startCharacterOffset = activeEditor.document.offsetAt(selection.start);
+        const endCharacterOffset = activeEditor.document.offsetAt(selection.end);
+        const currentLineNumber = selection.active.line + 1;
+
 
         // 3. Construct the path to the AppleScript
         // Assume openFileInXcode.applescript is in the 'scripts' folder of the extension directory
@@ -48,8 +54,15 @@ export function activate(context: vscode.ExtensionContext) {
         // 4. Define arguments to pass to the AppleScript
         const configuration = vscode.workspace.getConfiguration('cursorsync');
         const appName = configuration.get<string>('openWithApp') || 'Xcode';
-        const scriptArgs = [appName, currentFilePath, currentLineNumber.toString()];
-
+        const selectionMode = configuration.get<string>('selectionMode') || 'character'; // Default to 'character'
+        var start = startCharacterOffset;
+        var end = endCharacterOffset;
+        if (selectionMode === 'line') {
+            start = currentLineNumber;
+            end = currentLineNumber;
+        }
+        const scriptArgs = [appName, currentFilePath, start.toString(), end.toString(), selectionMode];
+        
         // 5. Execute the AppleScript
         // Using execFile is safer as it doesn't execute through a shell
         cp.execFile('osascript', [appleScriptPath, ...scriptArgs], (error, stdout, stderr) => {
@@ -75,7 +88,7 @@ export function activate(context: vscode.ExtensionContext) {
                 // AppleScript usually interacts via dialogs, stdout might be empty
             }
 
-            vscode.window.showInformationMessage(`Attempting to open ${path.basename(currentFilePath)} at line ${currentLineNumber} in ${appName}.`);
+            vscode.window.showInformationMessage(`Attempting to open ${path.basename(currentFilePath)} in ${appName} and select characters from offset ${startCharacterOffset} to ${endCharacterOffset}.`);
         });
     });
 
