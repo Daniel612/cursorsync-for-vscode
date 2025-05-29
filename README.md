@@ -1,6 +1,9 @@
+> Recommend to use with [CursorSync for Xcode](https://github.com/Daniel612/cursorsync-for-xcode).
+
 ## Usage
 - `⌥ Option + O` to open current file in Xcode.
 - configure the `appName` for different Xcode version in the settings.
+- switch the `selectionMode` between `line` and `character` in the settings.
 ## Installation Guide
 - **VSCode Marketplace**
   1. Search for "CursorSync for VSCode" in the VSCode Extensions Marketplace.
